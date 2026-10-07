@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#090611" />
+  <title>For Alexa ❤️ | Unlock Your Birthday</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="stars"></div>
+  <div id="particles"></div>
+  <div id="toast"></div>
+
+  <main id="app">
+    <!-- 01 INTRO -->
+    <section class="scene active" id="scene1">
+      <div class="terminal glass">
+        <div class="tiny">PRIVATE BIRTHDAY SYSTEM</div>
+        <div class="terminal-lines">
+          <p>Initializing something special<span>...</span></p>
+          <p>Scanning birthday memories<span>...</span></p>
+          <p>Finding <b>Alexa</b><span>...</span></p>
+          <p>Almost ready<span>...</span> ❤️</p>
+        </div>
+        <button class="primary" id="startBtn">✨ START MY BIRTHDAY</button>
+      </div>
+    </section>
+
+    <!-- 02 VERIFY -->
+    <section class="scene" id="scene2">
+      <div class="card glass">
+        <div class="stage">01 / 08</div>
+        <div class="icon">🔐</div>
+        <h1>Wait, Alexa...</h1>
+        <p class="lead">Before we continue, we need to make sure you're really today's birthday person.</p>
+        <p class="question">Are you really <strong>Alexa</strong>? 😌</p>
+        <div class="button-row">
+          <button class="primary" id="yesBtn">YES 😌</button>
+          <button class="secondary dodge" id="obviousBtn">Obviously! 😎</button>
+        </div>
+        <p class="micro">One of these buttons may be slightly dramatic. 😂</p>
+      </div>
+    </section>
+
+    <!-- 03 PUZZLE -->
+    <section class="scene" id="scene3">
+      <div class="card glass wide">
+        <div class="stage">02 / 08</div>
+        <div class="icon">🧩</div>
+        <h1>One tiny task, my bachaa</h1>
+        <p class="lead">Every special day needs a little patience.</p>
+        <p>Arrange the hearts in the correct order:</p>
+        <div id="puzzle" class="puzzle">
+          <button class="tile" data-pos="0">❤️</button>
+          <button class="tile" data-pos="1">💗</button>
+          <button class="tile" data-pos="2">💖</button>
+        </div>
+        <p id="puzzleHint" class="hint">Tap two pieces to swap them.</p>
+        <button class="primary hidden" id="puzzleNext">UNLOCKED 💗 →</button>
+      </div>
+    </section>
+
+    <!-- 04 MEMORIES -->
+    <section class="scene" id="scene4">
+      <div class="card glass wide">
+        <div class="stage">03 / 08</div>
+        <div class="icon">📸</div>
+        <h1>Memory #<span id="memoryNumber">01</span></h1>
+        <div class="memory-frame">
+          <img id="memoryImage" src="photos/memory1.jpg" alt="Memory" onerror="this.classList.add('missing'); this.src='';" />
+          <div id="memoryFallback" class="photo-placeholder">
+            <span>📷</span>
+            <b>Add your photo here</b>
+            <small>photos/memory1.jpg</small>
+          </div>
+        </div>
+        <p id="memoryCaption" class="memory-caption">Some moments don't look special when they're happening... until they become memories. ❤️</p>
+        <button class="primary" id="nextMemory">NEXT MEMORY →</button>
+      </div>
+    </section>
+
+    <!-- 05 SECRET KEY -->
+    <section class="scene" id="scene5">
+      <div class="card glass">
+        <div class="stage">04 / 08</div>
+        <div class="icon">🔑</div>
+        <h1>A little secret...</h1>
+        <p class="lead">The key is hidden where memories usually live.</p>
+        <div class="objects">
+          <button class="secret-object" data-secret="false">🎁</button>
+          <button class="secret-object" data-secret="true">❤️</button>
+          <button class="secret-object" data-secret="false">💫</button>
+        </div>
+        <p id="keyHint" class="hint">Choose wisely, Alexa. 👀</p>
+        <button class="primary hidden" id="keyNext">🔑 SECRET MESSAGE UNLOCKED</button>
+      </div>
+    </section>
+
+    <!-- 06 CAKE -->
+    <section class="scene" id="scene6">
+      <div class="card glass cake-card">
+        <div class="stage">05 / 08</div>
+        <h1>Okay... enough secrets.</h1>
+        <p class="lead">It's time for the real celebration, my bachaa. 🎂</p>
+        <div class="cake-area">
+          <div class="cake">
+            <div class="candles">
+              <div class="candle"><i></i></div>
+              <div class="candle"><i></i></div>
+              <div class="candle"><i></i></div>
+              <div class="candle"><i></i></div>
+              <div class="candle"><i></i></div>
+            </div>
+            <div class="cake-top"></div>
+            <div class="cake-body"></div>
+            <div class="plate"></div>
+          </div>
+        </div>
+        <p id="blowStatus" class="blow-status">Make a wish. Then blow the candles. 🌬️</p>
+        <div class="button-row">
+          <button class="primary" id="micBtn">🎙️ ENABLE BLOW DETECTION</button>
+          <button class="secondary hidden" id="manualBlow">🌬️ BLOW</button>
+        </div>
+        <p class="micro">Microphone works on localhost/HTTPS. A manual button appears as a backup.</p>
+        <button class="primary hidden" id="cakeNext">🎉 CANDLES BLOWN →</button>
+      </div>
+    </section>
+
+    <!-- 07 CAKE CUT -->
+    <section class="scene" id="scene7">
+      <div class="card glass">
+        <div class="stage">06 / 08</div>
+        <div class="icon">🔪</div>
+        <h1>First slice is yours.</h1>
+        <p class="lead">But you have to cut it yourself. 😌</p>
+        <div id="cutCake" class="cut-cake">
+          <div class="slice left"></div>
+          <div class="slice right"></div>
+          <div class="knife">🔪</div>
+          <div class="mini-candle">✨</div>
+        </div>
+        <button class="primary" id="cutBtn">🔪 CUT THE CAKE</button>
+        <p id="cutMessage" class="success hidden">First slice unlocked. 🎂❤️</p>
+        <button class="primary hidden" id="letterNext">OPEN THE LAST THING 💌</button>
+      </div>
+    </section>
+
+    <!-- 08 LETTER -->
+    <section class="scene" id="scene8">
+      <div class="stage">07 / 08</div>
+      <div class="envelope-wrap" id="envelopeWrap">
+        <div class="envelope">
+          <div class="envelope-front">💌</div>
+        </div>
+        <p>One last thing to open, Alexa...</p>
+        <button class="primary" id="openLetter">OPEN MY LETTER</button>
+      </div>
+      <div id="letter" class="letter glass hidden">
+        <div class="letter-head">For my Alexa ❤️</div>
+        <div id="typedLetter"></div>
+        <button class="primary hidden" id="timelineBtn">LOOK BACK WITH ME →</button>
+      </div>
+    </section>
+
+    <!-- TIMELINE -->
+    <section class="scene" id="scene9">
+      <div class="card glass wide">
+        <div class="stage">08 / 08</div>
+        <div class="icon">🌌</div>
+        <h1>Before you go...</h1>
+        <p class="lead">Let's look back for a moment.</p>
+        <div class="timeline" id="timeline">
+          <article class="timeline-item">
+            <div class="timeline-photo"><img src="photos/memory1.jpg" onerror="this.style.display='none';" /><span>❤️</span></div>
+            <h3>Memory #01</h3><p>Maybe this was just another day. Now it feels special.</p>
+          </article>
+          <article class="timeline-item">
+            <div class="timeline-photo"><img src="photos/memory2.jpg" onerror="this.style.display='none';" /><span>✨</span></div>
+            <h3>Memory #02</h3><p>One of those little moments I would happily live again.</p>
+          </article>
+          <article class="timeline-item">
+            <div class="timeline-photo"><img src="photos/memory3.jpg" onerror="this.style.display='none';" /><span>😂</span></div>
+            <h3>Memory #03</h3><p>The kind of memory that still makes me smile.</p>
+          </article>
+          <article class="timeline-item">
+            <div class="timeline-photo"><img src="photos/memory4.jpg" onerror="this.style.display='none';" /><span>🥹</span></div>
+            <h3>Memory #04</h3><p>Somehow, you made ordinary days feel different.</p>
+          </article>
+          <article class="timeline-item">
+            <div class="timeline-photo"><img src="photos/memory5.jpg" onerror="this.style.display='none';" /><span>🌙</span></div>
+            <h3>Memory #05</h3><p>And somehow... here we are, making another one.</p>
+          </article>
+        </div>
+        <button class="primary" id="finalBtn">ONE LAST SURPRISE ✨</button>
+      </div>
+    </section>
+
+    <!-- FINAL -->
+    <section class="scene final-scene" id="scene10">
+      <div id="fireworks"></div>
+      <div class="final-content">
+        <p class="eyebrow">FOR THE GIRL WHO MADE THIS DAY SPECIAL</p>
+        <h1>Happy Birthday<br /><span>Alexa</span> 🎂</h1>
+        <p class="final-line">You thought that was everything?</p>
+        <p class="nope">Nope. ❤️</p>
+        <div class="final-question">
+          <p>One last question...</p>
+          <h2>Can I keep making memories with you?</h2>
+          <div class="button-row">
+            <button class="primary final-yes">YES ❤️</button>
+            <button class="primary final-yes">YESSS 🥹</button>
+          </div>
+        </div>
+        <p id="finalMessage" class="final-message hidden">Then stay, my bachaa. There's still so much life left to laugh about, fight about, celebrate, and remember. ❤️✨</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
